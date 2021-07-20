@@ -1,0 +1,776 @@
+<!DOCTYPE html> <!--상품(물품)등록 페이지-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+        <!--제이쿼리 파일 참조-->
+        <script src="js/jquery.js"></script>
+        
+        <!--제이쿼리 달력기능-->
+        <!--
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+    
+        <!-- Main Quill library -->	
+        <script src = "ckeditor/ckeditor.js"></script>
+    
+    <!--회원정보수정 style-->
+    
+    <!--왼쪽상자-->
+    <style>
+        .container{
+            width: 1200px;
+            max-width: none !important;
+        }
+        .enroll-box {
+            height: 400px;
+            margin-top: 30px;
+        }
+        .top-box {
+            border-bottom: 3px solid hsl(331, 26%, 41%);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        .top-box a:hover{
+            color: #5c0931;
+        }
+        .top-box a{
+            font-weight: bold;
+            margin-left: 10px;
+            color: hsl(328, 9%, 68%);
+            text-decoration: none;
+        }
+        .left-box {
+            border: 1px solid #5c0931;
+            float: left;
+            width: 40%;
+            padding: 4px;
+            height: 630px;
+            
+        }
+        .top-box-span1{
+            color: #5c0931;
+        }
+        .left-box > span {
+            margin: 0px 0px 5px 0px
+        }
+        .input-two {
+            width: 175px;
+        }
+        .left-box{
+           overflow: hidden;
+           padding-top: 20px;
+           padding-left: 10px;
+        }
+        .left-box span{
+            color: #5c0931;
+        }
+        /* left-box div영역 */
+        .box-left-text{
+            margin-right: 5px;
+            width: 20%;
+            float: left;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .box-right-text{
+            width: 75%;
+            float: left;
+        }
+
+
+
+        /* 상품 번호 영역 */
+        .box-num-div{
+            overflow: hidden;
+        }
+        .box-item-num{
+            margin-bottom: 15px;
+            float: left;
+        }
+        .right-text{
+            margin-left: 30px;
+            float: left;
+        }
+        /* 상품 명 영역 */
+        .box-item-name-div{
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .box-item-name{
+            float: left;
+        }
+        /* 상품 정보2 */
+        .box-item-info-div{
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .box-item-info{
+            float: left;
+        }
+        /* 작가명 */
+        .box-at-name-div{
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .box-at-name{
+            float: left;
+        }
+        /* 작가 정보2 */
+        .box-at-info-div{
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .box-at-info{
+            float: left;
+        }
+        /* 시간 구역*/
+        .box-start-time-div{
+            margin-bottom: 20px;
+        }
+        .box-end-time-div{
+            margin-bottom: 20px;
+        }
+        /* 가격 구역 */
+        .enroll-price{
+            margin-bottom: 50px;
+        }
+        .enroll-end-price{
+            margin-bottom: 20px;
+        }
+
+        /* -------------텍스트 구역 */
+        /* 상품번호 텍스트 */
+        .auto-insert-div{
+            margin-bottom: 15px;
+        }
+        /* 상품명 텍스트 */
+        .text-item-name-div{
+            margin-bottom: 15px;
+        }
+        .text-item-name{
+            width: 100%;
+        }
+        /* 상품정보2 텍스트 */
+        .text-item-info-div{
+            margin-bottom: 15px;
+        }
+        .text-item-info{
+            width: 100%;
+        }
+        /* 작가명 텍스트 */
+        .text-at-name-div{
+            margin-bottom: 15px;
+        }
+        .text-at-name{
+            width: 100%;
+        }
+        /* 작가정보2 텍스트 */
+        .text-at-info-div{
+            margin-bottom: 10px;
+        }
+        .text-at-info{
+            width: 100%;
+        }
+        /* 시작시간 텍스트 */
+        .start-time-div{
+           
+            width: 100%;
+        }
+        .text-start-time{
+            text-align: center;
+            width: 160px;
+            height: 30px;
+            margin-bottom: 15px;
+        }
+
+        .text-start-date{
+            margin-left: 15px;
+            margin-right: 0px;
+            text-align: right;
+            width: 160px;
+            height: 30px;
+        }
+        /* 종료시간 텍스트 */
+        .text-end-time{
+            text-align: center;
+            width: 160px;
+            height: 30px;
+        }
+        .text-end-date{
+            margin-left: 15px;
+            text-align: right;
+            width: 160px;
+            height: 30px;
+            margin-bottom: 15px;
+        }
+        
+        /* 시작가격 텍스트 */
+        .start-price-div{
+            margin-bottom: 10px;
+        }
+        .text-start-price{
+            width: 100%;
+        }
+        .box-start-p{
+            margin-bottom: 17px;
+            margin-left: 80%;
+        }
+        .price-checkbox{
+
+        }
+        /* 종료가격 텍스트 */
+        .end-price-div{
+            margin-bottom: 10px;
+        }
+        .text-end-price{
+            width: 100%;
+        }
+        .box-end-p{
+            margin-left: 80%;
+        }
+        /* 버튼 */
+        .enroll-btn-div{
+            overflow: hidden;
+            margin-top: 30px;
+            width: 100%;
+        }
+        .okBtn {
+            text-align: center;
+            width: 100px;
+            height: 30px;
+            background-color: #5c0931;
+            /* padding: 15px 30px; */
+            color: white;
+            margin-right: 10px;
+            float: right;
+            border: none;
+            border-radius: 0px;
+        }
+        .okBtn:hover {
+            background-color: #1C1C1C;
+        }
+        .noBtn{
+            background-color: #5c0931;
+            width: 100px;
+            height: 30px;
+            /* padding: 15px 30px; */
+            color: white;
+            float: right;
+            border: none;
+            border-radius: 0px;
+        }
+        .noBtn:hover {
+            background-color: #1C1C1C;
+        }
+    </style>
+    
+    <!--가운데상자-->
+    <style>
+        
+        .mid-box {
+            border-width: 300px;
+            text-align: center;
+            float: left;
+            width: 32%;
+            height: 630px;
+        }
+        .mid-box p {
+            color: #5c0931;
+            margin-top: 100px;
+            margin-bottom: 30px;
+        }
+        .main-imgbox {  
+            width: 300px;
+            height: 200px;
+            margin-left: 40px;
+            
+        }
+        .main-imgbox > .mid-main-img{
+            width: auto;
+            height: auto;
+            border: 5px solid #5c0931;
+            margin-bottom: 70%;
+        }
+        .mid-box > p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        /* 파일선택 이미지 */
+        .mid-img-insert-div{
+            margin-left: 100px;
+        }
+    </style>
+    
+    <!--오른쪽 상자-->
+    <style>
+        
+        .right-box {
+            border-left: 1px solid #5c0931;
+            text-align: center;
+            float: left;
+            width: 28%;
+            height: 630px;
+            padding: 50px 20px 20px 50px;
+        }
+        .right-box > p {
+            color: #5c0931;
+            margin-top: 50px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .right-box div img{
+            padding: 0px;
+            margin-top: 20px;
+            margin-left: 10px;
+            border: 4px inset #5c0931;
+            width: 100px;
+            height: 100px;
+        }
+        .right-box > .right-box-img1 {
+            
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+        .right-box > .right-box-img2 {
+           
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+        .right-box > .right-box-img3 {
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+        .right-box > .right-box-img4 {
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+        .right-img-box{
+            overflow: hidden;
+            margin:  2px;
+            margin-bottom: 200px;
+        }
+        .right-img-box1{
+            float: left;
+        }
+        .right-img-box2{
+            float: left;
+        }
+        /* 파일추가 */
+        .right-img-insert-div{
+            margin-left: 100px;
+        }
+        
+    </style>
+    
+    <!--아래 상자-->
+    <style>
+        .bottom-box {
+            width: 70%;
+            color: #5c0931;
+            float: right;
+            width: 100%;
+            margin: 30px 0px;
+            padding: 10px 0px;
+            
+        }
+        .bottom-box > p {
+            font-weight: bold;
+            font-size: 15px;
+            border-bottom: 3px double #5c0931;
+        }
+        .bottom-box-ed{
+            width: 100%;
+            height: 200px;
+        }
+    
+    </style>
+    
+    
+</head>
+<body>
+    <!--헤더-->
+    <header>
+        <div class="header-memberLine">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <span>OOOO님 환영합니다</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <ul class="memberMenu">
+                           <li>로그인</li>
+                           <li>회원가입</li> 
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <nav class="nav-mainMenu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <h1><span>미술경매</span></h1>
+                    </div>
+                    <div class="col-xs-10">
+                        <ul class="mainMenu">
+                            <li><span>매물보기</span></li>
+                            <li><span>경매안내</span></li>
+                            <li><span>미술이란</span></li>
+                            <li><span>마이페이지</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <div class="container">
+        
+        <div class="enroll-box">
+            
+            <div class="top-box">
+                <a href=""><span class="top-box-span1">경매등록</span></a>
+                <a href=""><span>문의관리</span></a>
+                
+                <a href=""><span>경매관리</span></a>
+                <a href=""><span>회원관리</span></a>
+                <a href=""><span>광고관리</span></a>
+                <a href=""><span>로그아웃</span></a>
+            </div>
+            
+            <form action="">
+            <div class="left-box">
+                
+                <div class="box-left-text">
+                    <div class="box-num-div">
+                        <span class="box-item-num">상품 번호</span>
+                    </div>
+    
+                    <div class="box-item-name-div">
+                        <span class="box-item-name">상품 명</span>  
+                    </div>
+
+                    <div class="box-item-info-div">
+                        <span class="box-item-info">상품정보2</span>
+                    </div>
+
+                    <div class="box-at-name-div">
+                        <span class="box-at-name">작가 명</span> 
+                    </div>
+
+                    <div class="box-at-info-div">
+                        <span class="box-at-info">작가정보2</span>
+                    </div>
+                    
+                    <div class="enroll-time">
+                        <div class="box-start-time-div">
+                        <span class="box-start-time">시작시간</span>
+                        </div>
+        
+                        <div class="box-end-time-div">
+                        <span class="box-end-time">종료시간</span>
+                        </div>
+        
+                        <div class="enroll-price">
+                            <div class="box-start-price-div">
+                            <span class="box-start-price">시작가격</span>
+                            </div>
+                        </div>
+        
+                        <div class="enroll-end-price">
+                            <div class="box-end-price-div">
+                                <span class="box-end-price">종료가격</span>
+                            </div>
+                        </div>  
+                    </div>
+            </div>
+
+            <div class="box-right-text">
+                <div class="auto-insert-div">
+                <p class="auto-insert">자동부여 #4011</p>
+                </div>
+
+                <div class="text-item-name-div"><!-- 상품명 -->
+                <input type="text" name="name" class="text-item-name"/>  
+                </div>
+
+                <div class="text-item-info-div"><!-- 상품정보2 -->
+                <textarea name="review" form="inform" cols="40" rows="3" autofocus required wrap="hard" placeholder="상품정보를 설명하세요." class="text-item-info"> </textarea>
+                </div>
+
+                <div class="text-at-name-div"><!-- 작가명 -->
+                <input type="text" name="name" class="text-at-name"/>
+                </div>
+
+                <div class="text-at-info-div">
+                <textarea name="review" form="inform" cols="40" rows="3" autofocus required wrap="hard" placeholder="작가의 정보를 설명하세요." class="text-at-info"> </textarea>
+                </div>
+                <div>
+                    <div class="start-time-div"><!-- 시작시간 -->
+                        <!--뒤에박스-->
+                        <input type="time" name="name" class="text-start-time input-two"/>
+                        <!--앞에박스-->
+                        <input type="date" name="name" class="text-start-date input-two"/>
+                    </div>
+
+                    <div class="end-time-div"><!-- 종료 시간 -->
+                        <!--뒤에박스-->
+                        <input type="time" name="name" class="text-end-time input-two"/> 
+                        <!--앞에박스-->
+                        <input type="date" name="name" class="text-end-date input-two"/>
+                    </div>
+
+                    <div class="start-price-div"><!--시작가격-->
+                        <input type="text" name="name" class="text-start-price"/>
+                    </div>
+
+                    <div class="box-start-p">
+                        <p>삼십만원</p>
+                    </div>
+
+                    <div class="end-price-div"><!-- 종료 가격-->
+                        <label class="price-checkbox"><input type="checkbox" name="color" value="blue">종료가격(즉시구매가) 설정하기</label>
+                        <input type="text" name="name" class="text-end-price"/>
+                    </div>
+
+                    <div class="box-end-p">
+                        <p>오천만원</p>
+                    </div>
+
+                    <div class="enroll-btn-div">
+                        <button type="button" class="btn-btn-primary noBtn">취소하기</button>
+                        <button type="button" class="btn-btn-primary okBtn">작성하기</button>
+                        </div>  
+                </div>
+            </div>
+        </div>
+    </form>
+            
+            <div class="mid-box">
+                
+                <p>대표이미지</p>
+                <div class="main-imgbox">
+                   <img class="mid-main-img" src="img/1.jpg" id="file-main-img" alt="">
+
+
+                    <!-- 파일선택 미완성 -->
+                   <!-- <div class="mid-img-insert-div">
+                    <div class="mid-img-well" data-bind="fileDrag: fileData">
+                        <div class="mid-form-group">
+                            <div class="mid-file-info">
+                                <input type="file" data-bind="fileInput: fileData, customFileInput: {
+                                buttonClass: 'btn btn-success',
+                                fileNameClass: 'disabled form-control',
+                                onClear: onClear,
+                                onInvalidFileDrop: onInvalidFileDrop
+                                }" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                 </div> -->
+                  <!-- 파일선택 -->
+
+                  <div class="mid-img-insert-div">
+                    <div class="mid-img-well" data-bind="fileDrag: fileData">
+                        <div class="mid-form-group">
+                            <div class="mid-file-info">
+                                <label for="file">이미지업로드</label>
+                                <input class="mid-input-img"  type="file" name="file" id="file">
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                </div>
+                
+            </div>
+            
+            <div class="right-box">
+                
+              
+                <p>그 외 이미지</p>
+                <div class="right-img-box">
+                   <div class="right-img-box1">
+                    <div class="right-box-img1">
+                        <img src="img/2.jpg" alt="">
+                    </div>
+                    <div class="right-box-img2">
+                        <img src="img/3.jpg" alt="">
+                    </div>
+                    </div>
+                   
+                    <div class="right-img-box2">    
+                    <div class="right-box-img3">
+                        <img src="img/4.jpg" alt="">
+                    </div>
+                    <div class="right-box-img4">
+                        <img src="img/5.jpg" alt="">
+                    </div>
+                    </div>
+                </div>
+
+
+                 <!-- 파일선택 미완성 -->
+                 <div class="right-img-insert-div">
+                    <div class="right-img-well" data-bind="fileDrag: fileData">
+                        <div class="right-form-group">
+                            <div class="right-file-info">
+                                <input type="file">
+
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                  <!-- 파일선택 -->
+                
+            
+            </div>
+            
+            <div class="bottom-box">
+                
+                <p>상품상세정보 작성</p>
+                <div class="eel"> <!--External editor library줄임말-->
+                    <textarea class="bottom-box-ed" id = "editor4" name = "editor4"></textarea>
+                    <script>CKEDITOR.replace('editor4');</script>
+                </div>
+               
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <script>
+		$(document).ready(function(){
+			
+			$("#uploadBtn").click(function () {
+				
+				var writer = '${sessionScope.userVO.userId}'; //아이디
+				var file = $("#file").val();
+				var content =$("#content").val();
+				
+				file = file.slice(file.lastIndexOf(".",file.length)+1, file.length)
+				if(file != 'jpg' && file != 'png' && file != 'bmp'){
+					alert("이미지 파일형태만 등록가능 합니다(jpg,png,bmp)");
+					return;
+				}else if (/*writer == ''*/ false){
+					alert("로그인이 필요한 서비스입니다.");
+					return;
+				}
+				//파일데이터
+				console.log($("#file")[0]);
+				console.log($("#file")[0].files);
+				console.log($("#file")[0].files[0]);
+				
+				//비동기형식의 폼데이터 사용
+				var formData = new FormData();
+				
+				formData.append("writer",writer);
+				formData.append("content",content);
+				formData.append("file",$("#file")[0].files[0]);
+				
+				$.ajax({
+					type: "post",
+					url: "snsUpload",
+					processData: false, //키 = 값으로 전송되는것을 막는 옵션
+					contentType: false, //default 멀티파트 폼데이터 형식으로 지정
+					data : formData,
+					success: function(data){
+						 if(data == "success"){
+							 $("#file").val(""); //태그
+							 $("#content").val("");//내용
+							 $(".fileDiv").css("display","none"); //안보이도록처리
+							 
+						 }else if (data == "idFail"){
+							 alert("로그인이 필요한 서비스 입니다.");
+						 }else{
+							 alert("서버 문제가 발생했습니다. 관리자에게 문의하세요.");
+						 }
+
+					},
+					error: function(status, error){
+						alert("서버 문제가발생했습니다. 관리자에게 문의하세요.1");
+					}
+				})
+			}); 
+		});
+	</script>
+    
+    <script>
+		//자바 스크립트 파일 미리보기 기능
+		function readURL(input) {
+        	if (input.files && input.files[0]) {
+        		
+            	var reader = new FileReader(); //비동기처리를 위한 파읽을 읽는 자바스크립트 객체
+            	//readAsDataURL 메서드는 컨텐츠를 특정 Blob 이나 File에서 읽어 오는 역할 (MDN참조)
+	        	reader.readAsDataURL(input.files[0]); 
+            	//파일업로드시 화면에 숨겨져있는 클래스fileDiv를 보이게한다
+	            $(".main-imgbox").css("display", "block");
+            	
+            	reader.onload = function(event) { //읽기 동작이 성공적으로 완료 되었을 때 실행되는 익명함수
+                	$('#file-main-img').attr("src", event.target.result); 
+                	console.log(event.target)//event.target은 이벤트로 선택된 요소를 의미
+	        	}
+        	}
+	    }
+		$("#file").change(function() {
+	        readURL(this); //this는 #file자신 태그를 의미
+	        
+	    });
+	</script>
+    
+    
+    
+    
+    
+    <!--푸터-->
+    <footer>
+        <div class="container">
+            <div class="row companyTotalInfo">
+                <div class="col-xs-6">
+                    <div class="companyInfo">
+                        <h4>미술경매 유한책임회사</h4> 
+                        <span>서울시 강남구 테헤란로 7길 7 (역삼동) 중앙정보기술인재개발원</span>
+                        <span>개인정보 책임 관리자 : 무책임</span>
+                        <span>통신판매업신고: 강남 00000호</span>
+                        <span><a href="#">이용약관보기</a></span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="companyServiceCenter">
+                        <h4>고객센터</h4>
+                        <span>TEL 1234-5678</span>
+                        <span>FAX 02-123-4567</span>
+                        <span>MAIL webmaster@mijeong.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row copyright">
+                <div class="col-xs-12">
+                    <div>
+                        <span>Copyright(c) 미술경매 LLC All rights reserved</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>
