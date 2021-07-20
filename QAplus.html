@@ -1,0 +1,422 @@
+<!DOCTYPE html> <!--Q and A 상세 페이지-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    
+    <!--탭기능-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    
+    <!-- Main Quill library -->	
+    <script src = "ckeditor/ckeditor.js"></script>
+        
+    <!--헤더 푸터 css-->
+    <style>
+        body {margin: 0 auto;}
+        /* 헤더영역 */
+        header{
+             display:flex;
+             justify-content: space-between;
+             align-items: center;
+             background-color: black;
+             flex-direction: row;
+             flex-wrap: wrap;
+
+        }
+
+        header .header-logo {
+            font-size: 30px;
+            color: white;
+            padding-left: 90px;
+        }
+
+        .header-logo a {
+            color: rgb(238,224,219);
+            font-family: 'Lobster', cursive;
+            font-size: 70px;
+        }
+
+        .header-logo a:hover {
+            color: rgb(238,224,219);
+        }
+
+        header .header-user {
+            display: flex; 
+        }
+
+        header .header-user li {
+            padding: 8px 12px;
+        }
+
+        header .header-user li a{
+            color: white;
+        }
+
+        .main-wide img{
+            width: 100%;
+            height: 400px;
+        }
+
+        .header-button{
+            display: flex;
+            width: 100%;
+            background-color:#5f1e09f1 ;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 200px;
+            height: 70px;
+        }
+
+        .header-button > .menu-button{
+            height: 100%;
+        }
+
+        .header-button a {
+            color:white;
+            display: block;
+            height: 100%;
+        }
+
+        .header-button a:hover{
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-button a span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 65px;
+            height: 100%;
+        }
+        footer{
+            padding: 0;
+            margin-top: 50px;
+            background-color: #5f1e09f1;
+            width: 100%;
+            color: wheat;
+            display: flex;
+            height: 150px;
+        }
+        .footer-container{
+            width: 100%;
+        }
+
+        footer .footer-menu > .footer-menu-inner li{
+            display: inline-block;
+            border-left: solid 1px #777;
+        }
+
+        footer .footer-menu{
+            background-color:#3f1709f1 ;
+        }
+
+        footer .footer-menu > li > a{
+            display: block;
+            padding: 0px 15px;
+
+        }
+        .copyright{
+          text-align: center;
+
+        }
+    </style>
+    
+    <!--css-->
+    <style>
+        .QAplus {
+            /*border: 1px solid;*/
+            margin: 2% 15%;
+        }
+        .QAplus-topbox {
+            background-color: rgb(240,220,220);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .QAplus-bold {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .QandA-answ-x {
+            background-color: #A50D0D;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            border: 0px;
+            border-radius: 10px;
+            width: 80px;
+            height: 35px;
+        }
+        .QandA-answ-o {
+            background-color: #112389;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            border: 0px;
+            border-radius: 10px;
+            width: 80px;
+            height: 35px;
+        }
+        .QAplus-talk {
+            padding: 10px;
+            margin: 100px 0px;
+        }
+        
+        /*답변이 있을때*/ 
+        .QAplus-mid {
+            margin-top: 30px;
+        }
+        .QAplus-answer-title {
+            background-color: #5f1e09f1;
+            border-radius: 10px;
+            height: 20px;
+            padding: 10px;
+            color: white;
+        }
+        .QAplus-listBtn {
+            background-color: #5f1e09f1;
+            border: 0px;
+            border-radius: 5px;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+        .QAplus-listBtn:hover {background-color: black;}
+        .QAplus-listBtn:active {background-color: rgb(240,220,220); color: #5f1e09f1;}
+        .QAplus-icon2 {
+            width: 40px;
+            height: auto;
+            float: right;
+        }
+        .QAplus-change-Btn {
+            border: 0px;
+            float: right;
+            background-color: white;
+        }
+        
+        
+    </style>
+    
+    <style>
+        
+        /*글쓰기*/
+        .bottom-box {
+            width: 70%;
+            color: #5c0931;
+            float: right;
+            width: 100%;
+            margin: 30px 0px;
+            padding: 10px 0px;
+            
+        }
+        .bottom-box > p {
+            font-weight: bold;
+            font-size: 15px;
+            border-bottom: 3px double #5c0931;
+        }
+        .bottom-box-ed{
+            width: 100%;
+            height: 200px;
+        }
+        /**/
+        
+    </style>
+    
+    
+</head>
+<body>
+    <!--참고: 
+    https://www.data.go.kr/bbs/qna/selectQna.do?pageIndex=2&bbsId=QNA_0000000000031365&searchCondition2=CND_ALL&cndCtgryPortal=&cndCtgryApi=&bindCndCtgry=&searchCondition6=&sort-post=CND_ALL&searchKeyword1=
+    -->
+    <!--계시판 참고: https://daydreamer-92.tistory.com/67-->
+    <!--헤더-->
+    <header>
+        <div class="empty"></div>
+        <div class="header-logo">
+            <a href="#">Tonight</a>
+        </div>
+        <ul class="header-user">
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">JOIN</a></li>
+            <li><a href="#">favorite</a></li>
+            <li><a href="#">Q&A</a></li>
+        </ul>
+
+        <div class="header-button">
+            <div class="menu-button">
+                <a href="#"> <span>와인</span></a>
+            </div>
+            <div class="menu-button">
+                <a href="#"><span>맥주</span></a>
+            </div>
+            <div class="menu-button">
+                <a href="#"><span>위스키</span></a>
+            </div>
+            <div class="menu-button">
+                <a href="#"><span>브랜디</span></a>
+            </div>
+            <div class="menu-button">
+                <a href="#"><span>전통주</span></a>
+            </div>
+            <div class="menu-button">
+                <a href="#"><span>이벤트</span></a>
+            </div>
+            <div class="menu-button">
+                <a href="#" onclick="window.open('SC.html', 'SC','width=600, height=610'); return false"><span>상품문의</span></a>
+            </div>
+        </div>
+
+        <div class="ham-container">
+            <a href="#" class="hamBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </header>
+    
+    
+    
+    
+    
+    <div class="QAplus">
+        
+        <h1>답변하기</h1>
+        
+        <div class="QAplus-topbox">
+            <button class="QandA-answ-o">답변O</button>
+            <span class="QAplus-bold">제목제목제목제목</span>
+            <hr/>
+            <span class="QAplus-bold">등록자</span>&nbsp;
+            <span>김김이</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="QAplus-bold">이메일</span>&nbsp;
+            <span>qwe123@naver.com</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="QAplus-bold">등록일</span>&nbsp;
+            <span>2021-07-04</span>
+        </div>
+                    
+        <div class="QAplus-talk">&nbsp;
+            로렘 입숨(lorem ipsum; 줄여서 립숨, lipsum)은 출판이나 그래픽 디자인 분야에서 폰트, 타이포그래피, 레이아웃 같은 그래픽 요소나 시각적 연출을 보여줄 때 사용하는 표준 채우기 텍스트로, 최종 결과물에 들어가는 실제적인 문장 내용이 채워지기 전에 시각 디자인 프로젝트 모형의 채움 글로도 이용된다. 이런 용도로 사용할 때 로렘 입숨을 그리킹(greeking)이라고도 부르며, 때로 로렘 입숨은 공간만 차지하는 무언가를 지칭하는 용어로도 사용된다.
+
+            로렘 입숨은 전통 라틴어와 닮은 점 때문에 종종 호기심을 유발하기도 하지만 그 이상의 의미를 담지는 않는다. 문서에서 텍스트가 보이면 사람들은 전체적인 프레젠테이션보다는 텍스트에 담긴 뜻에 집중하는 경향이 있어서 출판사들은 서체나 디자인을 보일 때는 프레젠테이션 자체에 초점을 맞추기 위해 로렘 입숨을 사용한다.
+
+            로렘 입숨은 영어에서 사용하는 문자들의 전형적인 분포에 근접하다고도 하는데, 이 점 때문에 프레젠테이션으로 초점을 이동하는 데에도 도움을 준다.
+        </div>
+        <hr/>
+        
+        <!--답변이 있을때-->
+        <div class="QAplus-mid" >
+            <div class="QAplus-answer-title">
+                <span>OOOO님의 답변</span>
+                <span style="float: right;">
+                    <span style="font-weight: bold; margin-right: 7px;">등록일</span>
+                    <span>2021-07-15</span>
+                </span>
+            </div>
+            
+            <button type="button" class="QAplus-change-Btn" id="QAplus-change-btn">
+                <img src="img/icon2.png" class="QAplus-icon2" onclick="location.href='QAedit.html'" title="수정">
+            </button>
+            
+            <script>
+                
+                $("#QAplus-change-btn").click(function() {
+                   
+                    formObj
+                    
+                });
+                
+            </script>
+                
+            <div class="QAplus-talk">&nbsp;
+                안녕하세요.
+
+                공공데이터활용지원센터입니다.
+
+                데이터셋 내에서 키워드 검색 시 조회되지 않는 건에  대해서는
+
+                메뉴의 [제공신청] → [공공데이터제공신청]을 통해 제공기관을 지정하신 후 문의주신 내용에 대해 데이터를 요청하시면  
+
+                제공기관 담당자가 확인한 후 요청 데이터에 대한 처리결과를 안내 받을 수 있습니다.
+
+                제공신청 접수 시 신청 기관의 공공데이터개방담당자가 개방 여부를 판단하며  
+
+                신청 후 10일이내 제공, 제공신청반려, 제공거부의 결정 및 사유를 안내하고 있습니다.
+
+                제공여부는 제공신청을 접수받은 제공기관이 판단을 하는 부분으로  
+
+                공공데이터포털에서는 문의사항에 대해 안내 드릴 수 없는 점 양해 바랍니다.
+
+                감사합니다.
+            </div>
+            
+            <div style="text-align: center;">
+                <button type="button" class="QAplus-listBtn" onClick="location.href='QA.html'">목록</button>
+            </div>
+            
+        </div><hr/>
+        
+        
+    </div> <!--QAplus end-->
+    
+    
+    
+    
+    
+            
+    <!--푸터-->
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="footer-menu">
+                    <ul class="footer-menu-inner">
+                        <li><a href="#">TONIGHT</a></li>
+                        <li><a href="#">오시는길</a></li>
+                        <li><a href="#">상품문의</a></li>
+                        <li><a href="#">Q&A</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="copyright">
+                        <span>
+                        회사명 : TONIGHT   사업자등록번호 : 123-01-12345   대표자 : 유기농   전화번호 : 031-111-2222  <br/>  
+                        주소 : 경기도   사이트명 : TONIGHT    담당자명 : 유기농 <br/>
+                          담당자휴대폰 : 010-1111-2222   담당자이메일 : uginong@uginong.com<br/>
+                        Copyright ⓒ TONIGHT All Right Reserved.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    
+    
+    <!--탭 JS-->
+    <script>
+
+            <script>
+                $(document).ready(function(){
+
+                    $('ul.tabs li').click(function(){
+                        var tab_id = $(this).attr('data-tab');
+
+                        $('ul.tabs li').removeClass('current');
+                        $('.tab-content').removeClass('current');
+
+                        $(this).addClass('current');
+                        $("#"+tab_id).addClass('current');
+                    })
+
+                })
+            </script>
+    
+    
+</body>    
+</html>

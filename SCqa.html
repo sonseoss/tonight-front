@@ -1,0 +1,213 @@
+<!DOCTYPE html> <!--SCqa 페이지-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    
+    <!--부트스트랩-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Main Quill library -->	
+    <script src = "ckeditor/ckeditor.js"></script>
+        
+    
+    <!--헤더 푸터 css-->
+    <style>
+        body {margin: 0 auto;}
+        /* 헤더영역 */
+        header{
+             display:flex;
+             justify-content: space-between;
+             align-items: center;
+             background-color: black;
+             flex-direction: row;
+             flex-wrap: wrap;
+
+        }
+
+        header .header-logo {
+            font-size: 30px;
+            color: white;
+            padding-left: 90px;
+        }
+
+        .header-logo a {
+            color: rgb(238,224,219);
+            font-family: 'Lobster', cursive;
+            font-size: 70px;
+        }
+
+        .header-logo a:hover {
+            color: rgb(238,224,219);
+        }
+
+        header .header-user {
+            display: flex; 
+        }
+
+        header .header-user li {
+            padding: 8px 12px;
+        }
+
+        header .header-user li a{
+            color: white;
+        }
+
+        .main-wide img{
+            width: 100%;
+            height: 400px;
+        }
+
+        .header-button{
+            display: flex;
+            width: 100%;
+            background-color:#5f1e09f1 ;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 200px;
+            height: 70px;
+        }
+
+        .header-button > .menu-button{
+            height: 100%;
+        }
+
+        .header-button a {
+            color:white;
+            display: block;
+            height: 100%;
+        }
+
+        .header-button a:hover{
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-button a span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 65px;
+            height: 100%;
+        }
+        footer{
+            padding: 0;
+            margin-top: 50px;
+            background-color: #5f1e09f1;
+            width: 100%;
+            color: wheat;
+            display: flex;
+            height: 150px;
+        }
+        .footer-container{
+            width: 100%;
+        }
+
+        footer .footer-menu > .footer-menu-inner li{
+            display: inline-block;
+            border-left: solid 1px #777;
+        }
+
+        footer .footer-menu{
+            background-color:#3f1709f1 ;
+        }
+
+        footer .footer-menu > li > a{
+            display: block;
+            padding: 0px 15px;
+
+        }
+        .copyright{
+          text-align: center;
+
+        }
+    </style>
+
+<!--SCqa css-->
+<style>
+    .SCqa-container {
+        height: 600px;
+        padding: 30px 20px;
+    }
+    .SCqa-title {
+        width: 100%;
+        float: right;
+    }
+    .SCqa-btn {
+        margin: 150px 0px;
+        background-color: #5f1e09f1;
+        border: 0px; 
+        padding: 10px 20px;
+        float: right;
+    }
+    
+    .SCqa-box {
+        margin-bottom: 20px;
+    }
+    .SCqa-leftbox{
+        font-weight: bold;
+        font-size: 18px;
+        color: #1C1C1C;
+    }
+    .SCqa-rightbox{
+        margin-left: 68px;
+        font-size: 18px;
+        color: #6E6E6E;
+    }
+    
+    .eel {
+        width: 100%;
+        float: right;
+    }
+    
+    .SCqa-container > h2 {
+        border-bottom: 4px solid #5f1e09f1;
+    }
+    
+</style>
+    
+</head>    
+<body>
+    
+    
+    
+    <div class="SCqa-container">
+        
+        <h2 style="font-weight: bold;">사용자 상품문의</h2><br/>
+        
+        <div class="SCqa-box">
+            <span class="SCqa-leftbox">작성자</span>
+            <span class="SCqa-rightbox">OOO</span>
+        </div>
+        <div class="SCqa-box">
+            <span class="SCqa-leftbox">연락처</span>
+            <span class="SCqa-rightbox">010-1234-5678</span>
+        </div>
+        
+        <div class="SCqa-box">
+            <span class="SCqa-leftbox">제목</span>
+            <input type="text" class="SCqa-title">
+        </div><br/>
+            
+        <span class="SCqa-leftbox">문의내용</span>
+        <div class="eel"> <!--External editor library줄임말-->
+            <textarea class="bottom-box-ed" id = "editor4" name = "editor4"></textarea>
+            <script>CKEDITOR.replace('editor4');</script>
+        </div>
+        
+        <div>
+            <button type="button" class="btn btn-primary SCqa-btn">등록하기</button>
+        </div>
+        
+        
+        
+    </div> <!--SCqa-container end-->
+    
+    
+        
+
+    
+</body>
+</html>
